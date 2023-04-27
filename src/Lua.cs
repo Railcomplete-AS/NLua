@@ -412,6 +412,12 @@ namespace NLua
             return 1;
         }
 
+        public void SetGetMemberOverrideFunc(Func<object, string, object> getMemberOverrideFunc)
+        {
+            _translator.MetaFunctionsInstance.GetMemberOverrideFunc = getMemberOverrideFunc;
+        }
+
+
         /// <summary>
         /// 
         /// </summary>

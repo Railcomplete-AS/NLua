@@ -47,6 +47,9 @@ namespace NLua
         readonly Dictionary<object, Dictionary<object, object>> _memberCache = new Dictionary<object, Dictionary<object, object>>();
         readonly ObjectTranslator _translator;
 
+        public Func<object, string, object> GetMemberOverrideFunc { get; set; }
+
+
         /*
          * __index metafunction for CLR objects. Implemented in Lua.
          */
@@ -404,6 +407,26 @@ namespace NLua
             object index = _translator.GetObject(luaState, 2);
             string methodName = index as string; // will be null if not a string arg
             var objType = obj.GetType();
+
+            if (!string.IsNullOrEmpty(methodName) && GetMemberOverrideFunc != null)
+            {
+                var value = GetMemberOverrideFunc(obj, methodName);
+
+
+                if (value != null)
+                {
+                    _translator.Push(luaState, value);
+                }
+                else
+                {
+                    luaState.PushNil();
+                }
+
+                // Push false because we are NOT returning a function (see luaIndexFunction)
+                _translator.Push(luaState, false);
+                return 2;
+            }
+
             var proxyType = new ProxyType(objType);
 
             // Handle the most common case, looking up the method by name. 

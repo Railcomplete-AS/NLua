@@ -49,6 +49,8 @@ namespace NLua
 
         public Func<object, string, object> GetMemberOverrideFunc { get; set; }
 
+        public Action<object, object, object> SetFieldOrPropertyOverrideAction { get; set; }
+
 
         /*
          * __index metafunction for CLR objects. Implemented in Lua.
@@ -1048,7 +1050,12 @@ namespace NLua
                     int index = (int)luaState.ToNumber(2);
                     var arr = (Array)target;
                     object val = _translator.GetAsType(luaState, 3, arr.GetType().GetElementType());
-                    arr.SetValue(val, index);
+                    if (SetFieldOrPropertyOverrideAction != null)
+                    {
+                        SetFieldOrPropertyOverrideAction.Invoke(arr, index, val);
+                    }
+                    else
+                        arr.SetValue(val, index);
                 }
                 else
                 {
@@ -1069,7 +1076,13 @@ namespace NLua
                         // Just call the indexer - if out of bounds an exception will happen
                         methodArgs[0] = index;
                         methodArgs[1] = val;
-                        setter.Invoke(target, methodArgs);
+
+                        if (SetFieldOrPropertyOverrideAction != null)
+                        {
+                            SetFieldOrPropertyOverrideAction.Invoke(target, index, val);
+                        }
+                        else
+                            setter.Invoke(target, methodArgs);
                     }
                     else
                     {
@@ -1116,6 +1129,14 @@ namespace NLua
                 detailMessage = "Invalid property name";
                 return false;
             }
+
+
+            if (SetFieldOrPropertyOverrideAction != null)
+            {
+                SetFieldOrPropertyOverrideAction.Invoke(target, fieldName, _translator.GetObject(luaState, 3));
+                return true;
+            }
+
 
             // Find our member via reflection or the cache
             var member = (MemberInfo)CheckMemberCache(targetType, fieldName);

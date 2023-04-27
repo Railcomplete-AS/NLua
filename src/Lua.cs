@@ -417,6 +417,10 @@ namespace NLua
             _translator.MetaFunctionsInstance.GetMemberOverrideFunc = getMemberOverrideFunc;
         }
 
+        public void SetSetFieldOrPropertyOverrideAction(Action<object, object, object> setFieldOrPropertyOverrideAction)
+        {
+            _translator.MetaFunctionsInstance.SetFieldOrPropertyOverrideAction = setFieldOrPropertyOverrideAction;
+        }
 
         /// <summary>
         /// 

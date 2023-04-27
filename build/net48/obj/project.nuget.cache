@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "fWICONOiMq9yl1YwpxQAfswlHtdL47enhkhEniallKaH/EkGWQ9PtGU2FBPARJTxcIpmzN5+/yMLcPNzdoesSg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\Solutions\\NLua\\build\\net48\\NLua.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ThomasBenjaminsen\\.nuget\\packages\\keralua\\1.3.2\\keralua.1.3.2.nupkg.sha512",
+    "C:\\Users\\ThomasBenjaminsen\\.nuget\\packages\\microsoft.build.tasks.git\\1.1.0\\microsoft.build.tasks.git.1.1.0.nupkg.sha512",
+    "C:\\Users\\ThomasBenjaminsen\\.nuget\\packages\\microsoft.sourcelink.common\\1.1.0\\microsoft.sourcelink.common.1.1.0.nupkg.sha512",
+    "C:\\Users\\ThomasBenjaminsen\\.nuget\\packages\\microsoft.sourcelink.github\\1.1.0\\microsoft.sourcelink.github.1.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

@@ -1,0 +1,136 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\Solutions\\NLua\\tests\\build\\net48\\NLuaTest.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\Solutions\\NLua\\build\\net48\\NLua.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\Solutions\\NLua\\build\\net48\\NLua.csproj",
+        "projectName": "NLua",
+        "projectPath": "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\Solutions\\NLua\\build\\net48\\NLua.csproj",
+        "packagesPath": "C:\\Users\\ThomasBenjaminsen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\Solutions\\NLua\\build\\net48\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\ThomasBenjaminsen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\ThomasBenjaminsen\\Desktop\\DNA Editor\\RC model nuget": {},
+          "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\LocalPackages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "allWarningsAsErrors": true
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "dependencies": {
+            "KeraLua": {
+              "target": "Package",
+              "version": "[1.3.2, )"
+            },
+            "Microsoft.SourceLink.GitHub": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.1.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\Solutions\\NLua\\tests\\build\\net48\\NLuaTest.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\Solutions\\NLua\\tests\\build\\net48\\NLuaTest.csproj",
+        "projectName": "NLuaTest",
+        "projectPath": "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\Solutions\\NLua\\tests\\build\\net48\\NLuaTest.csproj",
+        "packagesPath": "C:\\Users\\ThomasBenjaminsen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\Solutions\\NLua\\tests\\build\\net48\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "configFilePaths": [
+          "C:\\Users\\ThomasBenjaminsen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\ThomasBenjaminsen\\Desktop\\DNA Editor\\RC model nuget": {},
+          "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\LocalPackages": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "projectReferences": {
+              "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\Solutions\\NLua\\build\\net48\\NLua.csproj": {
+                "projectPath": "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\Solutions\\NLua\\build\\net48\\NLua.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "allWarningsAsErrors": true
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "dependencies": {
+            "KeraLua": {
+              "target": "Package",
+              "version": "[1.3.2, )"
+            },
+            "NUnit": {
+              "target": "Package",
+              "version": "[3.13.2, )"
+            },
+            "NUnit3TestAdapter": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[4.1.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

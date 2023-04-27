@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "dHDpORJQsk6Eke34dp9aNE/F4wN7KMSIGKQa3Xmhk8mgpMnehQgQbrYAFKCV0+HHjNPbCZ174SWY4KViLozr8Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ThomasBenjaminsen\\Documents\\GitHub\\RailCOMPLETE\\Solutions\\NLua\\tests\\build\\net48\\NLuaTest.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ThomasBenjaminsen\\.nuget\\packages\\keralua\\1.3.2\\keralua.1.3.2.nupkg.sha512",
+    "C:\\Users\\ThomasBenjaminsen\\.nuget\\packages\\nunit\\3.13.2\\nunit.3.13.2.nupkg.sha512",
+    "C:\\Users\\ThomasBenjaminsen\\.nuget\\packages\\nunit3testadapter\\4.1.0\\nunit3testadapter.4.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

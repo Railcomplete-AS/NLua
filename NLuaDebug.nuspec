@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>NLua</id>
-    <version>2.0.5</version>
+    <version>2.0.6</version>
     <authors>NLua</authors>
     <owners>Vinicius Jarina</owners>
     <licenseUrl>https://github.com/nlua/NLua/blob/main/LICENSE</licenseUrl>
@@ -20,8 +20,8 @@
     <repository type="git" url="https://github.com/nlua/nlua" commit="708ba30e982deccb1248d099806bc00e362fbda4" />
   </metadata>
   <files>
-    <file src="lib\Release\net48\NLua.dll" target="lib\net48" />
-	<!-- <file src="lib\Debug\net48\NLua.pdb" target="lib\net48" /> -->
+    <file src="lib\Debug\net48\NLua.dll" target="lib\net48" />
+	<file src="lib\Debug\net48\NLua.pdb" target="lib\net48" />
     <file src="LICENSE" target="LICENSE" />
   </files>
 </package>

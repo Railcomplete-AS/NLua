@@ -426,12 +426,12 @@ namespace NLua
                         return 2;
                     }
 
-                    var methodWrapper = new LuaMethodWrapper(_translator, obj, new ProxyType(objType), methodInfo);
-                    var invokeDelegate = new LuaNativeFunction(methodWrapper.InvokeFunction);
+                    var methodWrapper = new LuaMethodWrapper(_translator, null, new ProxyType(objType), methodInfo);
+                    var wrapper = methodWrapper.InvokeFunction;
 
-                    SetMemberCache(objType, methodName, invokeDelegate);
+                    SetMemberCache(objType, methodName, wrapper);
 
-                    _translator.PushFunction(luaState, invokeDelegate);
+                    _translator.PushFunction(luaState, wrapper);
                     _translator.Push(luaState, true);
                     return 2;
                 }

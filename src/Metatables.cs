@@ -47,7 +47,7 @@ namespace NLua
         readonly Dictionary<object, Dictionary<object, object>> _memberCache = new Dictionary<object, Dictionary<object, object>>();
         readonly ObjectTranslator _translator;
 
-        public Func<object, string, object> GetMemberOverrideFunc { get; set; }
+        public Func<object, object, object> GetMemberOverrideFunc { get; set; }
 
         public Action<object, object, object> SetFieldOrPropertyOverrideAction { get; set; }
 
@@ -410,11 +410,40 @@ namespace NLua
             string methodName = index as string; // will be null if not a string arg
             var objType = obj.GetType();
 
-            if (!string.IsNullOrEmpty(methodName) && GetMemberOverrideFunc != null)
+            if (GetMemberOverrideFunc != null)
             {
-                var value = GetMemberOverrideFunc(obj, methodName);
+                var value = GetMemberOverrideFunc(obj, index);
 
+                // Method returned
+                if (value is MethodInfo methodInfo)
+                {
+                    object cachedMember = CheckMemberCache(objType, methodName);
 
+                    if (cachedMember is LuaNativeFunction cachedNativeLuaFunction)
+                    {
+                        _translator.PushFunction(luaState, cachedNativeLuaFunction);
+                        _translator.Push(luaState, true);
+                        return 2;
+                    }
+
+                    var methodWrapper = new LuaMethodWrapper(_translator, obj, new ProxyType(objType), methodInfo);
+                    var invokeDelegate = new LuaNativeFunction(methodWrapper.InvokeFunction);
+
+                    SetMemberCache(objType, methodName, invokeDelegate);
+
+                    _translator.PushFunction(luaState, invokeDelegate);
+                    _translator.Push(luaState, true);
+                    return 2;
+                }
+
+                // Assume index value returned
+                if (string.IsNullOrEmpty(methodName))
+                {
+                    _translator.Push(luaState, value);
+                    return 1;
+                }
+
+                // Field or property value returned
                 if (value != null)
                 {
                     _translator.Push(luaState, value);

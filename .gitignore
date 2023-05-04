@@ -3,7 +3,7 @@ src/bin
 src/obj
 tests/bin
 tests/obj
-build/net46/obj/
+build/net48/obj/
 build/netstandard1.0/bin/
 build/netstandard1.0/obj/
 build/netstandard1.3/bin/
@@ -24,9 +24,9 @@ build/WatchOS/obj/
 build/XamariniOS/obj/
 build/XamarinMac/obj/
 build/netcoreapp3.1/obj/
-tests/build/net46/bin/Debug/KeraLua.dll
-tests/build/net46/bin/
-tests/build/net46/obj/
+tests/build/net48/bin/Debug/KeraLua.dll
+tests/build/net48/bin/
+tests/build/net48/obj/
 tests/build/netcoreapp3.1/bin/
 tests/build/netcoreapp3.1/obj/
 *.user

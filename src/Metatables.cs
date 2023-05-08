@@ -426,7 +426,7 @@ namespace NLua
                         return 2;
                     }
 
-                    var methodWrapper = new LuaMethodWrapper(_translator, null, new ProxyType(objType), methodInfo);
+                    var methodWrapper = new LuaMethodWrapper(_translator, new ProxyType(objType), methodInfo.Name, BindingFlags.Instance);
                     var wrapper = methodWrapper.InvokeFunction;
 
                     SetMemberCache(objType, methodName, wrapper);

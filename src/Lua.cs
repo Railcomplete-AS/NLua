@@ -338,7 +338,9 @@ namespace NLua
         }
 
 #if __IOS__ || __TVOS__ || __WATCHOS__ || __MACCATALYST__
+#pragma warning disable CA1416 // Validate platform compatibility
         [MonoPInvokeCallback(typeof(LuaNativeFunction))]
+#pragma warning restore CA1416 // Validate platform compatibility
 #endif
         static int PanicCallback(IntPtr state)
         {
@@ -662,7 +664,16 @@ namespace NLua
             }
             set
             {
-               SetObjectToPath(fullPath, value);
+                if (value != null && value.GetType().IsSubclassOf(typeof(MethodBase)))
+                {
+                    // If the value is a delegate type, instead treat it as a function
+                    this.RegisterFunction(fullPath, (MethodBase)value);
+                }
+                else
+                {
+                    // Otherwise, treat it as normal
+                    SetObjectToPath(fullPath, value);
+                }
             }
         }
 
@@ -943,6 +954,7 @@ namespace NLua
             {
                 _hookCallback = DebugHookCallback;
                 _luaState.SetHook(_hookCallback, mask, count);
+                return 0;
             }
 
             return -1;
@@ -1038,7 +1050,9 @@ namespace NLua
         /// <param name = "luaDebug">Pointer to LuaDebug (lua_debug) structure</param>
         /// 
 #if __IOS__ || __TVOS__ || __WATCHOS__ || __MACCATALYST__
+#pragma warning disable CA1416 // Validate platform compatibility
         [MonoPInvokeCallback(typeof(LuaHookFunction))]
+#pragma warning restore CA1416 // Validate platform compatibility
 #endif
         static void DebugHookCallback(IntPtr luaState, IntPtr luaDebug)
         {

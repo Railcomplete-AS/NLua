@@ -436,6 +436,10 @@ namespace NLua
             string methodName = index as string; // will be null if not a string arg
             var objType = obj.GetType();
 
+            // Try to access by array if the type is right and index is an int (lua numbers always come across as double)
+            if (TryAccessByArray(luaState, objType, obj, index))
+                return 1;
+
             if (GetMemberOverrideFunc != null)
             {
                 var value = GetMemberOverrideFunc(obj, index);
@@ -493,10 +497,6 @@ namespace NLua
             if (!string.IsNullOrEmpty(methodName) && IsMemberPresent(proxyType, methodName))
                 return GetMember(luaState, proxyType, obj, methodName, BindingFlags.Instance);
 
-            // Try to access by array if the type is right and index is an int (lua numbers always come across as double)
-            if (TryAccessByArray(luaState, objType, obj, index))
-                return 1;
-
             int fallback = GetMethodFallback(luaState, objType, obj, methodName);
             if (fallback != 0)
                 return fallback;
@@ -541,6 +541,13 @@ namespace NLua
 
             Type type = objType.UnderlyingSystemType;
 
+
+            if (type == typeof(object[]))
+            {
+                object[] arr = (object[])obj;
+                _translator.Push(luaState, arr[intIndex]);
+                return true;
+            }
             if (type == typeof(long[]))
             {
                 long[] arr = (long[])obj;

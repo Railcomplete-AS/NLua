@@ -442,7 +442,19 @@ namespace NLua
 
             if (GetMemberOverrideFunc != null)
             {
-                var value = GetMemberOverrideFunc(obj, index);
+                object value;
+
+                // An exception must not leave this callback. It would unwind through Lua's native frames as a .NET exception, which a script's
+                // pcall cannot catch, and skip Lua's own unwinding, which leaks C call depth in the state until every call fails.
+                try
+                {
+                    value = GetMemberOverrideFunc(obj, index);
+                }
+                catch (Exception e)
+                {
+                    ThrowError(luaState, e);
+                    return 1;
+                }
 
                 // Method returned
                 if (value is MethodInfo methodInfo)
@@ -1199,7 +1211,16 @@ namespace NLua
 
             if (SetFieldOrPropertyOverrideAction != null)
             {
-                SetFieldOrPropertyOverrideAction.Invoke(target, fieldName, _translator.GetObject(luaState, 3));
+                // An exception must not leave this callback either. SetFieldOrProperty and SetClassFieldOrProperty raise the error ThrowError pushes.
+                try
+                {
+                    SetFieldOrPropertyOverrideAction.Invoke(target, fieldName, _translator.GetObject(luaState, 3));
+                }
+                catch (Exception e)
+                {
+                    ThrowError(luaState, e);
+                }
+
                 return true;
             }
 
